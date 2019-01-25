@@ -1,27 +1,23 @@
-
 import React from 'react';
 import NotFound from './NotFound';
-/*import PrismicReact from 'prismic-reactjs';*/
-// Going granular for now to see what we actually need
 import {RichText} from 'prismic-reactjs';
 import Text from './Text';
 import Quote from './Quote';
 import ImageCaption from './ImageCaption';
 
-
 // Declare your component
 export default class Post extends React.Component {
-
   state = {
     doc: null,
     notFound: false,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchPage(this.props);
   }
 
   componentWillReceiveProps(props) {
+    // Deprecated in React 17, requires refactoring
     this.fetchPage(props);
   }
 
@@ -46,6 +42,7 @@ export default class Post extends React.Component {
   }
 
   sliceSwitch(slice, index) {
+    /* Render the slice components */
     switch (slice.slice_type) {
       case ("image_with_caption"):
         return <ImageCaption slice={slice} key={'slice-' + index} />
@@ -66,12 +63,13 @@ export default class Post extends React.Component {
             <div className="back">
               <a href="./">back to list</a>
             </div>
-
+          {/* Render the edit button */}
             <h1 data-wio-id={this.state.doc.id}>
               {RichText.asText(this.state.doc.data.title)}
             </h1>
           </div>
-        
+          
+          {/* Go through the slices of the post and render the appropiate one */}
           {this.state.doc.data.body.map((slice, i) => {
             return this.sliceSwitch(slice, i)
           })}

@@ -1,5 +1,6 @@
 import React from 'react';
 import NotFound from './NotFound';
+import PrismicConfig from './prismic-configuration';
 import {RichText, Date} from 'prismic-reactjs';
 import Prismic from 'prismic-javascript';
 
@@ -10,11 +11,20 @@ export default class BlogHome extends React.Component {
 		posts: [],
 	}
 
-	componentWillMount() {
+	static validateOnboarding() {
+		// Check that you have access to the repository
+    const repoEndpoint = PrismicConfig.apiEndpoint.replace('/api/v2', '');
+    fetch(`${repoEndpoint}/app/settings/onboarding/run`, { method: 'POST' })
+      .catch(() => console.log('Cannot access your repository, check your api endpoint'));
+  }
+
+	componentDidMount() {
+		BlogHome.validateOnboarding();
 		this.fetchPage(this.props);
 	}
 
 	componentWillReceiveProps(props) {
+		// Deprecated in React 17, needs refactoring
 	  this.fetchPage(props);
 	}
 
@@ -73,17 +83,21 @@ export default class BlogHome extends React.Component {
 	blogPostsSection() {
 		return (
 			<div className="blog-main">
+				{/* Working from the array of all blog posts, we process each one */}
 				{this.state.posts.map((post, i) => {
+					/* Store the date as a Date object so we can format it to whatever we need */
 					let postDate = Date(post.data.date);
 					return (
 						<div className="blog-post" data-wio-id={post.id} key={post.id} >
 							<h2>
+								{/* We render a link to a particular post using the linkResolver for the url and its title */}
 								<a href={this.props.prismicCtx.linkResolver(post)}>
 									{RichText.render(post.data.title, this.props.prismicCtx.linkResolver)}
 								</a>
 							</h2>
 							<p className="blog-post-meta">
 								<time className="created-at">
+									{/* Format the date to M d, Y */}
 									{new Intl.DateTimeFormat('en-US', {
 										month: 'short', 
 										day: '2-digit', 
@@ -91,6 +105,7 @@ export default class BlogHome extends React.Component {
 									}).format(postDate)}
 								</time>
 							</p>
+						{/* Renders a small preview of the post's text */}
 						{this.firstParagraph(post)}
 						</div>
 					);
@@ -100,6 +115,7 @@ export default class BlogHome extends React.Component {
 	}
 
 	blogHomeHead() {
+		// Using the queried blog_home document data, we render the top section
 		const avatar = {backgroundImage: 'url(' + this.state.doc.data.image.url +')'};
 		return (
 			<div className="home">

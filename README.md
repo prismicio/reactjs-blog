@@ -1,7 +1,11 @@
-[![Dependency Status](https://david-dm.org/prismicio/reactjs-starter.svg)](https://david-dm.org/prismicio/reactjs-starter)
+[![Dependency Status](https://david-dm.org/raulg/reactjs-blog.svg)](https://david-dm.org/raulg/reactjs-blog)
 
-# Prismic React Starter
-This project has been created with [`create-react-app`](https://github.com/facebookincubator/create-react-app). We added a zest of [prismic](https://github.com/prismicio/javascript-kit) inside it.
+# Prismic React Blog Site Example
+This project is an implementation of the Prismic blog site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features.
+
+### TODO (Internal)
+
+Missing an in-depth review of code and dependencies to remove leftovers from the Quick Start project. /help and related components mostly.
 
 ### Install dependencies
 ```

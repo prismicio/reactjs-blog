@@ -10,7 +10,7 @@ export default class PrismicApp extends React.Component {
     prismicCtx: null,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.buildContext().then((prismicCtx) => {
       this.setState({ prismicCtx });
     }).catch((e) => {

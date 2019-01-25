@@ -54,7 +54,8 @@ export default class ImageCaption extends React.Component {
 		);
 	}
 
-	imageCaptionLabel() {
+	render() {
+		/* Render the appropiate image caption layout as specified by the user in the slice */
 		switch(this.props.slice.slice_label) {
 			case "image-full-width":
 				return this.imageFullWidth()
@@ -63,9 +64,5 @@ export default class ImageCaption extends React.Component {
 			default:
 				return this.defaultView()
 		}
-	}
-
-	render() {
-		return this.imageCaptionLabel();
 	}
 } 
