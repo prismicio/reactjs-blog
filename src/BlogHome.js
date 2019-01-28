@@ -4,6 +4,7 @@ import PrismicConfig from './prismic-configuration';
 import {RichText, Date} from 'prismic-reactjs';
 import Prismic from 'prismic-javascript';
 import {Helmet} from 'react-helmet';
+import Loader from './Loader';
 
 export default class BlogHome extends React.Component {
 	state = {
@@ -136,6 +137,6 @@ export default class BlogHome extends React.Component {
 		} else if (this.state.notFound) {
 			return <NotFound />;
 		}
-		return <h1>Loading</h1>;
+		return <Loader />;
 	}
 }

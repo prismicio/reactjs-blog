@@ -5,6 +5,7 @@ import Text from './Text';
 import Quote from './Quote';
 import ImageCaption from './ImageCaption';
 import {Helmet} from 'react-helmet';
+import Loader from './Loader';
 
 // Declare your component
 export default class Post extends React.Component {
@@ -74,6 +75,6 @@ export default class Post extends React.Component {
     } else if (this.state.notFound) {
       return <NotFound />;
     }
-    return <div />;
+    return <Loader />;
   }
 }
