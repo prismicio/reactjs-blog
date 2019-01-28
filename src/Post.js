@@ -4,6 +4,7 @@ import {RichText} from 'prismic-reactjs';
 import Text from './Text';
 import Quote from './Quote';
 import ImageCaption from './ImageCaption';
+import {Helmet} from 'react-helmet';
 
 // Declare your component
 export default class Post extends React.Component {
@@ -12,33 +13,25 @@ export default class Post extends React.Component {
     notFound: false,
   }
 
-  componentDidMount() {
-    this.fetchPage(this.props);
-  }
-
-  componentWillReceiveProps(props) {
-    // Deprecated in React 17, requires refactoring
-    this.fetchPage(props);
-  }
-
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.props.prismicCtx.toolbar();
+    // We fetch the page only after props have changed and PrismicCtx is no longer null 
+    if (!prevProps.prismicCtx) {
+      this.fetchPage(this.props);
+    }
   }
 
   fetchPage(props) {
-    if (props.prismicCtx) {
-      // We are using the function to get a document by its uid
-      return props.prismicCtx.api.getByUID('post', props.match.params.uid, {}, (err, doc) => {
-        if (doc) {
-          // We put the retrieved content in the state as a doc variable
-          this.setState({ doc });
-        } else {
-          // We changed the state to display error not found if no matched doc
-          this.setState({ notFound: !doc });
-        }
-      });
-    }
-    return null;
+    // We are using the function to get a document by its uid
+    return props.prismicCtx.api.getByUID('post', props.match.params.uid, {}, (err, doc) => {
+      if (doc) {
+        // We put the retrieved content in the state as a doc variable
+        this.setState({ doc });
+      } else {
+        // We changed the state to display error not found if no matched doc
+        this.setState({ notFound: !doc });
+      }
+    });
   }
 
   sliceSwitch(slice, index) {
@@ -73,11 +66,14 @@ export default class Post extends React.Component {
           {this.state.doc.data.body.map((slice, i) => {
             return this.sliceSwitch(slice, i)
           })}
+          <Helmet>
+            <title>{RichText.asText(this.state.doc.data.title)}</title>
+          </Helmet>
         </div>
       );
     } else if (this.state.notFound) {
       return <NotFound />;
     }
-    return <h1>Loading</h1>;
+    return <div />;
   }
 }

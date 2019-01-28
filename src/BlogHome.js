@@ -3,6 +3,7 @@ import NotFound from './NotFound';
 import PrismicConfig from './prismic-configuration';
 import {RichText, Date} from 'prismic-reactjs';
 import Prismic from 'prismic-javascript';
+import {Helmet} from 'react-helmet';
 
 export default class BlogHome extends React.Component {
 	state = {
@@ -20,39 +21,33 @@ export default class BlogHome extends React.Component {
 
 	componentDidMount() {
 		BlogHome.validateOnboarding();
-		this.fetchPage(this.props);
 	}
 
-	componentWillReceiveProps(props) {
-		// Deprecated in React 17, needs refactoring
-	  this.fetchPage(props);
-	}
-
-	componentDidUpdate() {
+	componentDidUpdate(prevProps) {
 	  this.props.prismicCtx.toolbar();
+	  if (!prevProps.prismicCtx) {
+	  	this.fetchPage(this.props);
+	  }
 	}
 
 	fetchPage(props) {
-	  if (props.prismicCtx) {
-	    // We are using the function to get a document by its uid
-	    return props.prismicCtx.api.getSingle('blog_home').then(doc => {
-	      if (doc) {
-	        // We put the retrieved content in the state as a doc variable
-	        this.setState({ doc });
-	        props.prismicCtx.api.query(
-	        	// Get the blog posts in descending order
-	        	Prismic.Predicates.at('document.type', 'post'),
-	        	{orderings : '[my.post.date desc]'}
-	        ).then(res => {
-	        	this.setState({posts: res.results});
-	        });
-	      } else {
-	        // We changed the state to display error not found if no matched doc
-	        this.setState({ notFound: !doc });
-	      }
-	    });
-	  }
-	  return null;
+    // We are using the function to get a document by its uid
+    return props.prismicCtx.api.getSingle('blog_home').then(doc => {
+      if (doc) {
+        // We put the retrieved content in the state as a doc variable
+        this.setState({ doc });
+        props.prismicCtx.api.query(
+        	// Get the blog posts in descending order
+        	Prismic.Predicates.at('document.type', 'post'),
+        	{orderings : '[my.post.date desc]'}
+        ).then(res => {
+        	this.setState({posts: res.results});
+        });
+      } else {
+        // We changed the state to display error not found if no matched doc
+        this.setState({ notFound: !doc });
+      }
+    });
 	}
 
 	firstParagraph(post) {
@@ -131,6 +126,9 @@ export default class BlogHome extends React.Component {
 		if (this.state.doc) {
 			return (
 				<div>
+					<Helmet>
+						<title>{RichText.asText(this.state.doc.data.headline)}</title>
+					</Helmet>
 					{this.blogHomeHead()}
 					{this.blogPostsSection()}
 				</div>
