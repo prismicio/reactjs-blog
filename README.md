@@ -3,10 +3,6 @@
 # Prismic React Blog Site Example
 This project is an implementation of the Prismic blog site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features.
 
-### TODO (Internal)
-
-Missing an in-depth review of code and dependencies to remove leftovers from the Quick Start project. /help and related components mostly.
-
 ### Install dependencies
 ```
 > $ npm install
@@ -27,9 +23,9 @@ Build and open your browser to http://localhost:3000.
 > $ npm run build
 ```
 
-### Get started with prismic.io
+### Get started with Prismic
 
-You can find out how to get started with prismic.io from [our React documentation](https://prismic.io/docs/reactjs/getting-started/getting-started-from-scratch).
+You can find out how to get started with Prismic from [our React documentation](https://prismic.io/docs/reactjs/getting-started/getting-started-from-scratch).
 
 ### Licence
 

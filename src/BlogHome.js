@@ -1,27 +1,16 @@
 import React from 'react';
 import NotFound from './NotFound';
-import PrismicConfig from './prismic-configuration';
 import {RichText, Date} from 'prismic-reactjs';
 import Prismic from 'prismic-javascript';
 import {Helmet} from 'react-helmet';
-import Loader from './Loader';
+import Loader from './slices/Loader';
+import Footer from './slices/Footer';
 
 export default class BlogHome extends React.Component {
 	state = {
 		doc: null,
 		notFound: false,
 		posts: [],
-	}
-
-	static validateOnboarding() {
-		// Check that you have access to the repository
-    const repoEndpoint = PrismicConfig.apiEndpoint.replace('/api/v2', '');
-    fetch(`${repoEndpoint}/app/settings/onboarding/run`, { method: 'POST' })
-      .catch(() => console.log('Cannot access your repository, check your api endpoint'));
-  }
-
-	componentDidMount() {
-		BlogHome.validateOnboarding();
 	}
 
 	componentDidUpdate(prevProps) {
@@ -32,7 +21,7 @@ export default class BlogHome extends React.Component {
 	}
 
 	fetchPage(props) {
-    // We are using the function to get a document by its uid
+    // We are using the function to get single type document
     return props.prismicCtx.api.getSingle('blog_home').then(doc => {
       if (doc) {
         // We put the retrieved content in the state as a doc variable
@@ -80,7 +69,7 @@ export default class BlogHome extends React.Component {
 		return (
 			<div className="blog-main">
 				{/* Working from the array of all blog posts, we process each one */}
-				{this.state.posts.map((post, i) => {
+				{this.state.posts.map((post) => {
 					/* Store the date as a Date object so we can format it to whatever we need */
 					let postDate = Date(post.data.date);
 					return (
@@ -132,6 +121,7 @@ export default class BlogHome extends React.Component {
 					</Helmet>
 					{this.blogHomeHead()}
 					{this.blogPostsSection()}
+					<Footer />
 				</div>
 			);
 		} else if (this.state.notFound) {

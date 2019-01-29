@@ -6,8 +6,6 @@ export default class Loader extends React.Component {
 		return (
 			<div id="loader">
 				<div className="lds-ripple">
-		      <div></div>
-		      <div></div>
 	    	</div>
 	  	</div>
   	);
