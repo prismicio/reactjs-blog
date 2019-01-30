@@ -3,8 +3,8 @@ import NotFound from './NotFound';
 import {RichText, Date} from 'prismic-reactjs';
 import Prismic from 'prismic-javascript';
 import {Helmet} from 'react-helmet';
-import Loader from './slices/Loader';
-import Footer from './slices/Footer';
+import Loader from './Loader';
+import Footer from './Footer';
 
 export default class BlogHome extends React.Component {
 	state = {
@@ -72,22 +72,24 @@ export default class BlogHome extends React.Component {
 				{this.state.posts.map((post) => {
 					/* Store the date as a Date object so we can format it to whatever we need */
 					let postDate = Date(post.data.date);
+					/* Default title when post has no title set */
+					const defaultTitle = [<h1 key="title">Untitled</h1>]
 					return (
 						<div className="blog-post" data-wio-id={post.id} key={post.id} >
 							<h2>
 								{/* We render a link to a particular post using the linkResolver for the url and its title */}
 								<a href={this.props.prismicCtx.linkResolver(post)}>
-									{RichText.render(post.data.title, this.props.prismicCtx.linkResolver)}
+									{post.data.title.length !== 0 ? RichText.render(post.data.title, this.props.prismicCtx.linkResolver) : defaultTitle}
 								</a>
 							</h2>
 							<p className="blog-post-meta">
 								<time className="created-at">
 									{/* Format the date to M d, Y */}
-									{new Intl.DateTimeFormat('en-US', {
+									{postDate ? new Intl.DateTimeFormat('en-US', {
 										month: 'short', 
 										day: '2-digit', 
 										year: 'numeric'
-									}).format(postDate)}
+									}).format(postDate) : ''}
 								</time>
 							</p>
 						{/* Renders a small preview of the post's text */}

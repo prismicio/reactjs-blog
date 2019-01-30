@@ -6,9 +6,9 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Preview from './Preview';
-import NotFound from './NotFound';
-import Post from './Post';
-import BlogHome from './BlogHome';
+import NotFound from './components/NotFound';
+import Post from './components/Post';
+import BlogHome from './components/BlogHome';
 
 const App = (props) => (
   <Router>

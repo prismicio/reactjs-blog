@@ -1,5 +1,4 @@
 import React from 'react';
-import './NotFound.css';
 
 export default function NotFound() {
 	document.title = "404 :<";
