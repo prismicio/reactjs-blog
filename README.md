@@ -1,4 +1,4 @@
-[![Dependency Status](https://david-dm.org/raulg/reactjs-blog.svg)](https://david-dm.org/raulg/reactjs-blog)
+[![Dependency Status](https://david-dm.org/raulg/reactjs-blog.svg)](https://david-dm.org/raulg/reactjs-blog)[![Netlify Status](https://api.netlify.com/api/v1/badges/8d0a465a-7b1f-45f1-9fc2-e192f1f7a955/deploy-status)](https://app.netlify.com/sites/react-blog-demo/deploys)
 
 # Prismic React Blog Site Example
 This project is an implementation of the Prismic blog site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features.
