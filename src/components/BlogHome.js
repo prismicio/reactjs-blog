@@ -7,10 +7,16 @@ import Loader from './Loader';
 import Footer from './Footer';
 
 export default class BlogHome extends React.Component {
-	state = {
-		doc: null,
-		notFound: false,
-		posts: [],
+	constructor(props) {
+		super(props);
+		this.state = {
+			doc: null,
+			notFound: false,
+			posts: [],
+		}
+		if (props.prismicCtx) {
+			this.fetchPage(props);
+		}
 	}
 
 	componentDidUpdate(prevProps) {

@@ -10,9 +10,15 @@ import Footer from './Footer';
 
 // Declare your component
 export default class Post extends React.Component {
-  state = {
-    doc: null,
-    notFound: false,
+  constructor(props){
+    super(props);
+    this.state = {
+      doc: null,
+      notFound: false,
+    }
+    if (props.prismicCtx) {
+      this.fetchPage(props);
+    }
   }
 
   componentDidUpdate(prevProps) {
