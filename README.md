@@ -1,7 +1,7 @@
 [![Dependency Status](https://david-dm.org/raulg/reactjs-blog.svg)](https://david-dm.org/raulg/reactjs-blog)
 
 # Prismic React Blog Site Example
-This project is an implementation of the Prismic blog site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features. Read our user guide if you need guidance on how to use this repository.
+This project is an implementation of the Prismic blog site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features. Read our [user guide](https://user-guides.prismic.io/examples/react-js-samples/sample-blog-with-api-based-cms-in-reactjs) if you need guidance on how to use this repository.
 
 ### Install dependencies
 ```
