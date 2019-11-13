@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { RichText } from 'prismic-reactjs'
 import { SliceZone } from '../components/slices'
-import { Loader, Footer } from '../components'
+import { Footer } from '../components'
 import NotFound from './NotFound'
 
 import { client } from '../prismic-configuration'
@@ -26,7 +26,7 @@ const Post = ({ match: { params: { uid } } }) => {
   }, [uid]) // Only re-runs when the UID value has changed, for client-side navigation
 
   if (doc.loading) {
-    return <Loader />
+    return null
   }
 
   return (

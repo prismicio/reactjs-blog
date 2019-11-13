@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { RichText } from 'prismic-reactjs'
 import { Predicates } from 'prismic-javascript'
-import { AuthorHeader, Loader, Footer, BlogPosts } from '../components'
+import { AuthorHeader, Footer, BlogPosts } from '../components'
 import NotFound from './NotFound'
 import { client } from '../prismic-configuration'
 
@@ -37,7 +37,7 @@ const BlogHome = () => {
   }, [])
 
   if (homeData.loading) {
-    return <Loader />
+    return null
   }
 
   return (
@@ -48,8 +48,8 @@ const BlogHome = () => {
             <Helmet>
               <title>{RichText.asText(homeData.home.data.headline)}</title>
             </Helmet>
-            {!homeData.loading ? <AuthorHeader author={homeData.home.data} /> : <Loader />}
-            {!postsData.loading ? <BlogPosts posts={postsData.posts.results} /> : <Loader />}
+            {!homeData.loading ? <AuthorHeader author={homeData.home.data} /> : null}
+            {!postsData.loading ? <BlogPosts posts={postsData.posts.results} /> : null}
             <Footer />
           </div>
 
