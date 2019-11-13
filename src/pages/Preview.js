@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import qs from 'qs'
 
-import Loader from './components/Loader'
+import Loader from '../components/Loader'
 
-import { locationPropType, historyPropType } from './utils/propTypes'
-import { client, linkResolver } from './prismic-configuration'
+import { locationPropType, historyPropType } from '../utils/propTypes'
+import { client, linkResolver } from '../prismic-configuration'
 
 const Preview = ({ history, location }) => {
   useEffect(() => {

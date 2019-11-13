@@ -6,12 +6,11 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
-import { BlogHome, Post, NotFound } from './pages'
-import Preview from './Preview'
+import { BlogHome, NotFound, Post, Preview } from './pages'
 import { apiEndpoint } from './prismic-configuration'
 
 const App = () => {
-  const repoNameArray = /([^\/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint)
+  const repoNameArray = /([^/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint)
   const repoName = repoNameArray[1]
 
   return (
