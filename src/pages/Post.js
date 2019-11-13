@@ -18,7 +18,7 @@ const Post = ({ match: { params: { uid } } }) => {
       if (result) {
         return setPostData({ post: result, loading: false })
       } else {
-        console.warn('Post document. Make sure it exists in your Prismic repository')
+        return setPostData({ loading: false })
       }
     }
     fetchData()
