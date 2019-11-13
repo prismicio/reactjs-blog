@@ -25,15 +25,6 @@ a {
   background-size: 2px 2px;
   background-position: 0 23px;
 }
-.blog-main h1, .blog-main .h1,
-.blog-main h2, .blog-main .h2,
-.blog-main h3, .blog-main .h3,
-.blog-main h4, .blog-main .h4,
-.blog-main h5, .blog-main .h5,
-.blog-main h6, .blog-main .h6 {
-  color: #353535;
-  text-align: left;
-}
 h1, h2,h3,h4,h5,h6 {
   font-family: 'Lato', sans-serif;
 }

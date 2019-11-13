@@ -31,7 +31,7 @@ const ImageCaption = ({ slice }) => {
   }
 
   const imageFullWidth = () => {
-    return <div className='blog-header single' style={{
+    return <div className='full-width-image single' style={{
       backgroundImage: 'url(' + slice.primary.image.url + ')'
     }}>
       <div className='wrapper'>
