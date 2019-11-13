@@ -36,7 +36,7 @@ const BlogPosts = ({ posts }) => {
         /* Default title when post has no title set */
         const defaultTitle = [<h1 key='title'>Untitled</h1>]
         return (
-          <div className='blog-post' data-wio-id={post.id} key={post.id} >
+          <div className='blog-post' key={post.id} >
             <h2>
               {/* We render a link to a particular post using the linkResolver for the url and its title */}
               <Link to={linkResolver(post)}>

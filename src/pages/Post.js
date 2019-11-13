@@ -16,7 +16,6 @@ const Post = ({ match: { params: { uid } } }) => {
     const fetchData = async () => {
       const result = await client.getByUID('post', uid)
       if (result) {
-        window.PrismicToolbar.setupEditButton()
         return setPostData({ post: result, loading: false })
       } else {
         console.warn('Post document. Make sure it exists in your Prismic repository')
@@ -46,7 +45,7 @@ const Post = ({ match: { params: { uid } } }) => {
                 <Link to='/'>back to list</Link>
               </div>
               {/* Render the edit button */}
-              <h1 data-wio-id={doc.post.id}>
+              <h1>
                 {doc.post.data.title.length !== 0
                   ? RichText.asText(doc.post.data.title)
                   : 'Untitled'}

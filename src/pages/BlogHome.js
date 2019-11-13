@@ -14,7 +14,6 @@ const BlogHome = () => {
     const fetchData = async () => {
       const result = await client.getSingle('blog_home')
       if (result) {
-        window.PrismicToolbar.setupEditButton()
         setHomeData({ home: result, loading: false })
       } else {
         setHomeData({ loading: false })
