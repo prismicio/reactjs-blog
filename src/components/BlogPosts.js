@@ -33,16 +33,19 @@ const BlogPosts = ({ posts }) => {
       {posts.map((post) => {
         /* Store the date as a Date object so we can format it to whatever we need */
         let postDate = Date(post.data.date)
+        
         /* Default title when post has no title set */
-        const defaultTitle = [<h1 key='title'>Untitled</h1>]
+        const title =
+          RichText.asText(post.data.title) !== '' ?
+          RichText.asText(post.data.title) :
+          'Untitled';
+
         return (
           <div className='blog-post' key={post.id} >
             <h2>
               {/* We render a link to a particular post using the linkResolver for the url and its title */}
               <Link to={linkResolver(post)}>
-                {post.data.title.length !== 0
-                  ? <RichText render={post.data.title} />
-                  : defaultTitle}
+                <h2>{title}</h2>
               </Link>
             </h2>
             <p className='blog-post-meta'>
