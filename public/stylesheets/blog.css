@@ -102,6 +102,11 @@
   list-style-type: initial;
   margin-left: 1em;
 }
+@media (max-width: 767px) {
+  .post-part.single a {
+    background-position: 0 21px;
+  }
+}
 
 
 /**
