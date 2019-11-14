@@ -1,61 +1,60 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
-import { RichText } from 'prismic-reactjs'
-import { Predicates } from 'prismic-javascript'
-import { AuthorHeader, Footer, BlogPosts } from '../components'
-import NotFound from './NotFound'
-import { client } from '../prismic-configuration'
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { RichText } from 'prismic-reactjs';
+import { Predicates } from 'prismic-javascript';
 
+import { AuthorHeader, Footer, BlogPosts } from '../components';
+import NotFound from './NotFound';
+import { client } from '../prismic-configuration';
+
+/**
+ * Blog homepage component
+ */
 const BlogHome = () => {
-  const [homeData, setHomeData] = useState({ home: null, loading: true })
-  const [postsData, setPostsData] = useState({ posts: null, loading: true })
+  const [prismicData, setPrismicData] = useState({ homeDoc: null, blogPosts: null });
+  const [notFound, toggleNotFound] = useState(false);
 
+  // Get the homepage and blog post documents from Prismic
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await client.getSingle('blog_home')
-      if (result) {
-        setHomeData({ home: result, loading: false })
-      } else {
-        setHomeData({ loading: false })
-        console.warn('Blog Home document not found. Make sure it exists in your Prismic repository')
+    const fetchPrismicData = async () => {
+      try {
+        const homeDoc = await client.getSingle('blog_home');
+        const blogPosts = await client.query(
+          Predicates.at('document.type', 'post'),
+          { orderings: '[my.post.date desc]' }
+        );
+  
+        if (homeDoc) {
+          setPrismicData({ homeDoc, blogPosts });
+        } else {
+          console.warn('Blog Home document was not found. Make sure it exists in your Prismic repository');
+          toggleNotFound(true);
+        }
+      } catch (error) {
+        console.error(error);
+        toggleNotFound(true);
       }
     }
 
-    const fetchPosts = async () => {
-      const result = await client.query(Predicates.at('document.type', 'post'), { orderings: '[my.post.date desc]' })
-      if (result) {
-        setPostsData({ posts: result, loading: false })
-      } else {
-        setPostsData({ loading: false })
-        console.warn('Blog posts not found. Make sure they exist in your Prismic repository')
-      }
-    }
+    fetchPrismicData();
+  }, []);
 
-    fetchPosts()
-    fetchData()
-  }, [])
-
-  if (homeData.loading) {
-    return null
+  // Return the page if a document was retrieved from Prismic
+  if (prismicData.homeDoc) {
+    return (
+      <div>
+        <Helmet>
+          <title>{RichText.asText(prismicData.homeDoc.data.headline)}</title>
+        </Helmet>
+        <AuthorHeader author={prismicData.homeDoc.data} />
+        <BlogPosts posts={prismicData.blogPosts.results} />
+        <Footer />
+      </div>
+    );
+  } else if (notFound) {
+    return <NotFound />;
   }
-
-  return (
-    <Fragment>
-      {
-        homeData.home ? (
-          <div>
-            <Helmet>
-              <title>{RichText.asText(homeData.home.data.headline)}</title>
-            </Helmet>
-            {!homeData.loading ? <AuthorHeader author={homeData.home.data} /> : null}
-            {!postsData.loading ? <BlogPosts posts={postsData.posts.results} /> : null}
-            <Footer />
-          </div>
-
-        ) : <NotFound />
-      }
-    </Fragment>
-  )
+  return null;
 }
 
-export default BlogHome
+export default BlogHome;

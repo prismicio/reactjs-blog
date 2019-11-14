@@ -249,6 +249,9 @@
   height: 50vw;
   align-items: center;
 }
+.not-found a {
+  text-decoration: underline;
+}
 
 
 /*
