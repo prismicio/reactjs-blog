@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import qs from 'qs';
 
-import Loader from '../components/Loader';
+import { Loader } from '../components';
 import { locationPropType, historyPropType } from '../utils/propTypes';
 import { client, linkResolver } from '../prismic-configuration';
 

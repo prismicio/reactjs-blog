@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { RichText } from 'prismic-reactjs';
 
-import { DefaultLayout, SliceZone } from '../components';
+import { DefaultLayout, BackButton, SliceZone } from '../components';
 import NotFound from './NotFound';
 import { client } from '../prismic-configuration';
 
@@ -46,12 +45,10 @@ const Post = ({ match }) => {
     return (
       <DefaultLayout wrapperClass="main" seoTitle={title}>
         <div className="outer-container">
-          <div className="back">
-            <Link to="/">back to list</Link>
-          </div>
+          <BackButton />
           <h1>{title}</h1>
         </div>
-        <SliceZone slices={prismicDoc.data.body} />
+        <SliceZone sliceZone={prismicDoc.data.body} />
       </DefaultLayout>
     );
   } else if (notFound) {
