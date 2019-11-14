@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { RichText } from 'prismic-reactjs';
 import { Predicates } from 'prismic-javascript';
 
-import { AuthorHeader, Footer, BlogPosts } from '../components';
+import { AuthorHeader, BlogPosts, DefaultLayout } from '../components';
 import NotFound from './NotFound';
 import { client } from '../prismic-configuration';
 
@@ -41,15 +40,13 @@ const BlogHome = () => {
 
   // Return the page if a document was retrieved from Prismic
   if (prismicData.homeDoc) {
+    const title = RichText.asText(prismicData.homeDoc.data.headline);
+
     return (
-      <div>
-        <Helmet>
-          <title>{RichText.asText(prismicData.homeDoc.data.headline)}</title>
-        </Helmet>
+      <DefaultLayout seoTitle={title}>
         <AuthorHeader author={prismicData.homeDoc.data} />
         <BlogPosts posts={prismicData.blogPosts.results} />
-        <Footer />
-      </div>
+      </DefaultLayout>
     );
   } else if (notFound) {
     return <NotFound />;

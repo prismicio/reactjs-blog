@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { RichText } from 'prismic-reactjs';
 
-import { SliceZone } from '../components/slices';
-import { Footer } from '../components';
+import { DefaultLayout, SliceZone } from '../components';
 import NotFound from './NotFound';
-
 import { client } from '../prismic-configuration';
 
 /**
@@ -47,10 +44,7 @@ const Post = ({ match }) => {
       'Untitled';
 
     return (
-      <div className="main">
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
+      <DefaultLayout wrapperClass="main" seoTitle={title}>
         <div className="outer-container">
           <div className="back">
             <Link to="/">back to list</Link>
@@ -58,8 +52,7 @@ const Post = ({ match }) => {
           <h1>{title}</h1>
         </div>
         <SliceZone slices={prismicDoc.data.body} />
-        <Footer />
-      </div>
+      </DefaultLayout>
     );
   } else if (notFound) {
     return <NotFound />;
