@@ -3,7 +3,7 @@ import { RichText } from 'prismic-reactjs';
 
 import { DefaultLayout, BackButton, SliceZone } from '../components';
 import NotFound from './NotFound';
-import { client } from '../prismic-configuration';
+import { client } from '../utils/prismicHelpers';
 
 /**
  * Blog post page component

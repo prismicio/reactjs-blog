@@ -4,7 +4,7 @@ import { Predicates } from 'prismic-javascript';
 
 import { Header, PostList, DefaultLayout } from '../components';
 import NotFound from './NotFound';
-import { client } from '../prismic-configuration';
+import { client } from '../utils/prismicHelpers';
 
 /**
  * Blog homepage component
