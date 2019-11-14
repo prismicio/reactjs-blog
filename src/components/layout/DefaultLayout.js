@@ -13,6 +13,6 @@ const DefaultLayout = ({ wrapperClass, title, children }) => (
     {children}
     <Footer />
   </div>
-)
+);
 
 export default DefaultLayout;
