@@ -1,17 +1,20 @@
-import React, { Fragment } from 'react'
-import { Helmet } from 'react-helmet'
+import React, { Fragment } from 'react';
+import { Helmet } from 'react-helmet';
 import {
   BrowserRouter,
   Route,
   Switch,
   Redirect
-} from 'react-router-dom'
-import { BlogHome, NotFound, Post, Preview } from './pages'
-import { apiEndpoint } from './prismic-configuration'
+} from 'react-router-dom';
+import { BlogHome, NotFound, Post, Preview } from './pages';
+import { apiEndpoint } from './prismic-configuration';
 
+/**
+ * Main app component
+ */
 const App = () => {
-  const repoNameArray = /([^/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint)
-  const repoName = repoNameArray[1]
+  const repoNameArray = /([^/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint);
+  const repoName = repoNameArray[1];
 
   return (
     <Fragment>
@@ -28,7 +31,7 @@ const App = () => {
         </Switch>
       </BrowserRouter>
     </Fragment>
-  )
-}
+  );
+};
 
-export default App
+export default App;
