@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { RichText } from 'prismic-reactjs';
 import { Predicates } from 'prismic-javascript';
 
-import { AuthorHeader, BlogPosts, DefaultLayout } from '../components';
+import { Header, PostList, DefaultLayout } from '../components';
 import NotFound from './NotFound';
 import { client } from '../prismic-configuration';
 
@@ -24,7 +24,7 @@ const BlogHome = () => {
         );
   
         if (homeDoc) {
-          setPrismicData({ homeDoc, blogPosts });
+          setPrismicData({ homeDoc, blogPosts: blogPosts.results });
         } else {
           console.warn('Blog Home document was not found. Make sure it exists in your Prismic repository');
           toggleNotFound(true);
@@ -40,12 +40,18 @@ const BlogHome = () => {
 
   // Return the page if a document was retrieved from Prismic
   if (prismicData.homeDoc) {
-    const title = RichText.asText(prismicData.homeDoc.data.headline);
+    const homeDoc = prismicData.homeDoc;
+    const blogPosts = prismicData.blogPosts;
+    const title = RichText.asText(homeDoc.data.headline);
 
     return (
       <DefaultLayout seoTitle={title}>
-        <AuthorHeader author={prismicData.homeDoc.data} />
-        <BlogPosts posts={prismicData.blogPosts.results} />
+        <Header
+          image={homeDoc.data.image}
+          headline={homeDoc.data.headline}
+          description={homeDoc.data.description}
+        />
+        <PostList posts={blogPosts} />
       </DefaultLayout>
     );
   } else if (notFound) {
