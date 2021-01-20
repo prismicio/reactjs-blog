@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { RichText } from 'prismic-reactjs';
-import { Predicates } from 'prismic-javascript';
-
+import Prismic from '@prismicio/client';
 import { Header, PostList, DefaultLayout } from '../components';
 import NotFound from './NotFound';
 import { client } from '../utils/prismicHelpers';
@@ -19,7 +18,7 @@ const BlogHome = () => {
       try {
         const homeDoc = await client.getSingle('blog_home');
         const blogPosts = await client.query(
-          Predicates.at('document.type', 'post'),
+          Prismic.Predicates.at('document.type', 'post'),
           { orderings: '[my.post.date desc]' }
         );
   
