@@ -1,43 +1,18 @@
-[![Dependency Status](https://david-dm.org/raulg/reactjs-blog.svg)](https://david-dm.org/raulg/reactjs-blog)
+# Prismic & React.js Example Blog
+> [React.js](https://reactjs.org/) example blog project with content managed in [Prismic](https://prismic.io)
 
-# Prismic React Blog Site Example
-This project is an implementation of the Prismic blog site demo using ReactJS. Built up from the starter project, it's meant to provide you with an idea of how to build your own sites using the Prismic features. Read our [user guide](https://user-guides.prismic.io/examples/react-js-samples/sample-blog-with-api-based-cms-in-reactjs) if you need guidance on how to use this repository.
+## Check out the dedicated article to get this project up and running
+> [Prismic project guide](https://intercom.help/prismicio/en/articles/2685559-sample-blog-with-api-based-cms-in-reactjs)
 
-## Getting started quickly with Prismic Themes
-You can use our [Prismic-CLI](https://github.com/prismicio/prismic-cli) tool to quickly install this project in your machine, as well as setting up a Prismic repository with the required Custom Types. Just follow the instructions in your terminal to get started!
+## Learn more about using Prismic with Reactjs
 
-```
-npm install -g prismic-cli
-prismic theme https://github.com/raulg/reactjs-blog --conf /src/prismic-configuration.js
-```
+[Prismic + React.js documentation](https://prismic.io/docs/technologies/reactjs).
 
-### Install dependencies
-```
-npm install
-```
-### Runs the app in the development mode
-Build and open your browser to http://localhost:3000.
-```
-npm start
-```
-
-### Builds the app for production to the build folder
-```
-npm run build
-```
-
-## Deployment
-This project is ready for deployment using [Netlify](https://www.netlify.com), thanks to the addition of a `_redirects` file located in the public folder. If you're interested in deploying to other platforms review the suggested [solutions](https://facebook.github.io/create-react-app/docs/deployment).
-
-## Get started with Prismic
-
-You can find out how to get started with Prismic from [our React documentation](https://prismic.io/docs/reactjs/getting-started/getting-started-from-scratch).
-
-## Licence
+## License
 
 This software is licensed under the Apache 2 license, quoted below.
 
-Copyright 2017 Prismic.io (https://prismic.io).
+Copyright 2021 [Prismic](http://prismic.io).
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this project except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 
