@@ -1,14 +1,9 @@
 import * as prismic from "@prismicio/client";
 
 // Fill in your repository name
-export const repositoryName = "react-blog-angeloashmore";
+export const repositoryName = "my-repo-name";
 const endpoint = prismic.getEndpoint(repositoryName);
 
-/**
- * Prismic Client
- *
- * The client used to query content from your Prismic repository.
- */
 export const client = prismic.createClient(endpoint, {
   // If your repo is private, add an access token.
   accessToken: "",
