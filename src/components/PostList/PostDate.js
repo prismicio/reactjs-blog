@@ -1,10 +1,10 @@
 import React from "react";
-import { Date } from "prismic-reactjs";
+import * as prismicH from "@prismicio/helpers";
 
 /**
  * Post list item date component
  */
-const PostDate = ({ date }) => {
+export const PostDate = ({ date }) => {
   // Format the date to M d, Y
   const dateFormat = {
     month: "short",
@@ -12,7 +12,7 @@ const PostDate = ({ date }) => {
     year: "numeric",
   };
   const displayDate = new Intl.DateTimeFormat("en-US", dateFormat).format(
-    Date(date)
+    prismicH.asDate(date)
   );
 
   return (
@@ -21,5 +21,3 @@ const PostDate = ({ date }) => {
     </p>
   );
 };
-
-export default PostDate;

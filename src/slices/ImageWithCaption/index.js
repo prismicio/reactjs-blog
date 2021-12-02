@@ -1,11 +1,10 @@
-import React from "react";
-import DefaultImage from "./DefaultImage";
-import FullWidthImage from "./FullWidthImage";
+import { DefaultImage } from "./DefaultImage";
+import { FullWidthImage } from "./FullWidthImage";
 
 /**
  * Image caption slice component
  */
-const ImageCaption = ({ slice }) => {
+export const ImageWithCaption = ({ slice }) => {
   switch (slice.slice_label) {
     case "image-full-width":
       return <FullWidthImage slice={slice} />;
@@ -13,5 +12,3 @@ const ImageCaption = ({ slice }) => {
       return <DefaultImage slice={slice} />;
   }
 };
-
-export default ImageCaption;

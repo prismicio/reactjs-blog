@@ -1,34 +1,22 @@
-import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { usePrismicPreviewResolver } from "@prismicio/react";
+import { useNavigate } from "react-router-dom";
 
-import { Loader } from "../components";
-import { linkResolver } from "../prismic-configuration";
-import { client } from "../utils/prismicHelpers";
+import { Loader } from "../components/Loader";
 
 /**
  * Prismic preview component
  */
-const Preview = () => {
-  const location = useLocation();
+export const Preview = () => {
   const navigate = useNavigate();
+  const previewURL = usePrismicPreviewResolver({ navigate });
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const token = params.get("token");
-    const documentId = params.get("documentId");
-
-    if (!token) {
-      return console.warn(`Unable to retrieve the session token from provided url. \n
+    if (!previewURL) {
+      return console.warn(`Unable to retrieve the preview token from provided url. \n
       Check https://prismic.io/docs/reactjs/beyond-the-api/in-website-preview for more info`);
     }
-
-    client
-      .getPreviewResolver(token, documentId)
-      .resolve(linkResolver, "/")
-      .then((url) => navigate(url));
-  });
+  }, [previewURL]);
 
   return <Loader />;
 };
-
-export default Preview;

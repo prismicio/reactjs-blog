@@ -3,7 +3,7 @@ import React from "react";
 /**
  * Site footer component
  */
-const Footer = () => (
+export const Footer = () => (
   <footer>
     <p>
       Proudly published with &nbsp;
@@ -21,5 +21,3 @@ const Footer = () => (
     </p>
   </footer>
 );
-
-export default Footer;
