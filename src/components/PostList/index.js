@@ -1,10 +1,9 @@
-import React from 'react';
-import PostItem from './PostItem';
+import { PostItem } from "./PostItem";
 
 /**
  * Post list component
  */
-const PostList = ({ posts }) => {
+export const PostList = ({ posts }) => {
   return (
     <div className="blog-main">
       {posts.map((post) => (
@@ -13,5 +12,3 @@ const PostList = ({ posts }) => {
     </div>
   );
 };
-
-export default PostList;

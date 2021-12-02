@@ -1,10 +1,9 @@
-import React from 'react';
-import Caption from './Caption';
+import { Caption } from "./Caption";
 
 /**
  * Default image component
  */
-const DefaultImage = ({ slice }) => {
+export const DefaultImage = ({ slice }) => {
   const imageUrl = slice.primary.image.url;
   const imageAlt = slice.primary.image.alt;
   const caption = slice.primary.caption;
@@ -18,5 +17,3 @@ const DefaultImage = ({ slice }) => {
     </div>
   );
 };
-
-export default DefaultImage;

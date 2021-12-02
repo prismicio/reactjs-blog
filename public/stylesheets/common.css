@@ -2,10 +2,10 @@
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
-  background: #FFF7C7; /* WebKit/Blink Browsers */
+  background: #fff7c7; /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-  background: #FFF7C7; /* Gecko Browsers */
+  background: #fff7c7; /* Gecko Browsers */
 }
 
 /*
@@ -15,7 +15,7 @@ body {
   padding: 3rem 0 0 0;
   color: #353535;
   line-height: 1.5;
-  font-family: 'PT Serif', serif;
+  font-family: "PT Serif", serif;
   font-size: 20px;
 }
 a {
@@ -25,8 +25,13 @@ a {
   background-size: 2px 2px;
   background-position: 0 23px;
 }
-h1, h2,h3,h4,h5,h6 {
-  font-family: 'Lato', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
 }
 h1 {
   margin-bottom: 1rem;
@@ -48,7 +53,8 @@ h3 {
 p {
   margin-bottom: 2rem;
 }
-pre, ul {
+pre,
+ul {
   margin-bottom: 20px;
 }
 strong {
