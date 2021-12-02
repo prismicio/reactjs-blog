@@ -1,7 +1,7 @@
 import { Routes, BrowserRouter, Route, Navigate, Link } from "react-router-dom";
-import { PrismicProvider } from "@prismicio/react";
+import { PrismicProvider, PrismicToolbar } from "@prismicio/react";
 
-import { client } from "./prismic";
+import { client, repositoryName } from "./prismic";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import { Post } from "./pages/Post";
@@ -27,6 +27,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <PrismicToolbar repositoryName={repositoryName} />
     </PrismicProvider>
   );
 };

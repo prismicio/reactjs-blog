@@ -1,7 +1,5 @@
 import { Helmet } from "react-helmet";
-import { PrismicToolbar } from "@prismicio/react";
 
-import { repositoryName } from "../prismic";
 import { Footer } from "./Footer";
 
 /**
@@ -14,6 +12,5 @@ export const Layout = ({ wrapperClass, title, children }) => (
     </Helmet>
     {children}
     <Footer />
-    <PrismicToolbar repositoryName={repositoryName} />
   </div>
 );
