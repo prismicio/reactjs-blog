@@ -1,5 +1,5 @@
-import React from 'react';
-import { Date } from 'prismic-reactjs';
+import React from "react";
+import { Date } from "prismic-reactjs";
 
 /**
  * Post list item date component
@@ -7,11 +7,13 @@ import { Date } from 'prismic-reactjs';
 const PostDate = ({ date }) => {
   // Format the date to M d, Y
   const dateFormat = {
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric'
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
   };
-  const displayDate = new Intl.DateTimeFormat('en-US', dateFormat).format(Date(date));
+  const displayDate = new Intl.DateTimeFormat("en-US", dateFormat).format(
+    Date(date)
+  );
 
   return (
     <p className="blog-post-meta">

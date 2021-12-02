@@ -1,7 +1,9 @@
 # Prismic & React.js Example Blog
+
 > [React.js](https://reactjs.org/) example blog project with content managed in [Prismic](https://prismic.io)
 
 ## Check out the dedicated article to get this project up and running
+
 > [Prismic project guide](https://intercom.help/prismicio/en/articles/2685559-sample-blog-with-api-based-cms-in-reactjs)
 
 ## Learn more about using Prismic with Reactjs

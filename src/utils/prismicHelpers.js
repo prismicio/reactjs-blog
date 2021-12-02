@@ -1,7 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Prismic from '@prismicio/client'
-import { apiEndpoint, accessToken, linkResolver } from '../prismic-configuration';
+import React from "react";
+import { Link } from "react-router-dom";
+import Prismic from "@prismicio/client";
+import {
+  apiEndpoint,
+  accessToken,
+  linkResolver,
+} from "../prismic-configuration";
 
 // Helper function to convert Prismic Rich Text links to React Link components
 export const customLink = (type, element, content, children, index) => (
@@ -11,4 +15,4 @@ export const customLink = (type, element, content, children, index) => (
 );
 
 // Client method to query documents from the Prismic repo
-export const client = Prismic.client(apiEndpoint, { accessToken })
+export const client = Prismic.client(apiEndpoint, { accessToken });

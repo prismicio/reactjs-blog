@@ -1,39 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { RichText } from 'prismic-reactjs';
-import Prismic from '@prismicio/client';
+import React, { useEffect, useState } from "react";
+import { RichText } from "prismic-reactjs";
+import Prismic from "@prismicio/client";
 
-import { Header, PostList, DefaultLayout } from '../components';
-import NotFound from './NotFound';
-import { client } from '../utils/prismicHelpers';
+import { Header, PostList, DefaultLayout } from "../components";
+import NotFound from "./NotFound";
+import { client } from "../utils/prismicHelpers";
 
 /**
  * Blog homepage component
  */
 const BlogHome = () => {
-  const [prismicData, setPrismicData] = useState({ homeDoc: null, blogPosts: null });
+  const [prismicData, setPrismicData] = useState({
+    homeDoc: null,
+    blogPosts: null,
+  });
   const [notFound, toggleNotFound] = useState(false);
 
   // Get the homepage and blog post documents from Prismic
   useEffect(() => {
     const fetchPrismicData = async () => {
       try {
-        const homeDoc = await client.getSingle('blog_home');
+        const homeDoc = await client.getSingle("blog_home");
         const blogPosts = await client.query(
-          Prismic.Predicates.at('document.type', 'post'),
-          { orderings: '[my.post.date desc]' }
+          Prismic.Predicates.at("document.type", "post"),
+          { orderings: "[my.post.date desc]" }
         );
-  
+
         if (homeDoc) {
           setPrismicData({ homeDoc, blogPosts: blogPosts.results });
         } else {
-          console.warn('Blog Home document was not found. Make sure it exists in your Prismic repository');
+          console.warn(
+            "Blog Home document was not found. Make sure it exists in your Prismic repository"
+          );
           toggleNotFound(true);
         }
       } catch (error) {
         console.error(error);
         toggleNotFound(true);
       }
-    }
+    };
 
     fetchPrismicData();
   }, []);
@@ -58,6 +63,6 @@ const BlogHome = () => {
     return <NotFound />;
   }
   return null;
-}
+};
 
 export default BlogHome;
