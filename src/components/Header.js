@@ -1,4 +1,3 @@
-import React from "react";
 import { PrismicText } from "@prismicio/react";
 
 /**

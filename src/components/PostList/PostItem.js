@@ -1,4 +1,3 @@
-import React from "react";
 import { PrismicLink } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
 
