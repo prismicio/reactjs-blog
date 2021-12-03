@@ -10,7 +10,7 @@ import { Preview } from "./pages/Preview";
 /**
  * Main app component
  */
-const App = () => {
+export const App = () => {
   return (
     <PrismicProvider
       client={client}
@@ -31,5 +31,3 @@ const App = () => {
     </PrismicProvider>
   );
 };
-
-export default App;
