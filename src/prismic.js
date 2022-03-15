@@ -1,7 +1,7 @@
 import * as prismic from "@prismicio/client";
 
 // Fill in your repository name
-export const repositoryName = "react-blog-demo";
+export const repositoryName = "you-repo-name";
 
 export const client = prismic.createClient(repositoryName, {
   // If your repo is private, add an access token.
